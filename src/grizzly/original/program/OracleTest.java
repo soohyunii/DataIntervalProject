@@ -1,4 +1,4 @@
-package DB;
+package grizzly.original.program;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
