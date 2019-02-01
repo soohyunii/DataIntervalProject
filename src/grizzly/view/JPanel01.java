@@ -3,88 +3,61 @@ package grizzly.view;
 import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
 import javax.swing.*;
 
 import grizzly.dao.DBConnection;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-
-public class EventGui extends JFrame implements ActionListener{	
-	/*private JButton jBAddRow=null;
+public class JPanel01 extends JPanel{
+	private JButton jBAddRow=null;
 	private DBConnection dbConn;
 	private JTextField DBtextField, PWtextField, HostTextField, PortTextField, SidTextField;
-	String userName,password,host,port,sid;*/
+	String userName,password,host,port,sid;
+	private JPanelNumber win;
 	
-	public JPanel01 jpanel01=null;
+	DBConnection dbc = new DBConnection(); 
+	JButton buttonInput=new JButton("입력");
 	
-	
-	public static void main(String[] args) {
-		EventGui win = new EventGui();
+	public JPanel01(JPanelNumber win) {
+		this.win=win;
 		
-		win.setTitle("유격조사 테스트");
-		/*win.jpanel01 = new JPanel01(win);*/
+		DBtextField = new JTextField(30);
+		PWtextField = new JTextField(30);
+		HostTextField = new JTextField(30);
+		PortTextField = new JTextField(30);
+		SidTextField = new JTextField(30);
 		
-	}
-
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
 		
-	}
-	
-	//DB접속 생성자
-	/*DBConnection dbc = new DBConnection(); 
-	JButton buttonInput=new JButton("입력");*/
-
-/*	public EventGui() {
-		super("Event Start");
-		
-		setBounds(800,300,380,350);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
-		Container contentPane=this.getContentPane();
-		
-		JPanel pane=new JPanel();
-		
-		JTextField DBtextField = new JTextField(30);
-		JTextField PWtextField = new JTextField(30);
-		JTextField HostTextField = new JTextField(30);
-		JTextField PortTextField = new JTextField(30);
-		JTextField SidTextField = new JTextField(30);
 		JLabel labelDB = new JLabel("접속이름(DB명) : ");
 		JLabel labelPW = new JLabel("비밀번호 : ");
 		JLabel labelHost = new JLabel("호스트이름 : ");
 		JLabel labelPort = new JLabel("포트번호 : ");
 		JLabel labelSid = new JLabel("SID : ");
-		
-		
-		buttonInput.setMnemonic('S');     // 단축키설정
 			
-		pane.add(labelDB);
-		pane.add(DBtextField);
-		pane.add(labelPW);
-		pane.add(PWtextField);
-		pane.add(labelHost);
-		pane.add(HostTextField);
-		pane.add(labelPort);
-		pane.add(PortTextField);
-		pane.add(labelSid);
-		pane.add(SidTextField);
+		add(labelDB);
+		add(DBtextField);
+		add(labelPW);
+		add(PWtextField);
+		add(labelHost);
+		add(HostTextField);
+		add(labelPort);
+		add(PortTextField);
+		add(labelSid);
+		add(SidTextField);
 		
-		pane.add(buttonInput);
-		contentPane.add(pane);
+		add(buttonInput);
 		
 		setVisible(true);
 		
-		ActionListener listener = new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent evt) {
-				// 입력버튼을 클릭했을 경우 발생하는 event method
+		buttonInput.addActionListener(new MyActionListener());
+	  }
+	class MyActionListener implements ActionListener {
+		@Override
+		public void actionPerformed(ActionEvent evt) {
+			// win.change("panel01");
 				if(evt.getSource()==buttonInput) {
 					userName=String.valueOf(DBtextField.getText());
 					password=String.valueOf(PWtextField.getText());
@@ -106,13 +79,11 @@ public class EventGui extends JFrame implements ActionListener{
 						System.out.println("Database에 연결되었습니다.\n");
 						System.out.println("==============================");
 						JOptionPane.showMessageDialog(buttonInput, "Database에 연결되었습니다");
-						
+						win.change("jpanel02");
 						
 					} catch(ClassNotFoundException cnfe) {
-						System.out.println("DB드라이버 로딩 실패 : "+cnfe.toString());
 						JOptionPane.showMessageDialog(buttonInput,"DB드라이버 로딩 실패 : "+cnfe.toString());
 					} catch(SQLException sqle) {
-						System.out.println("DB 접속실패 : "+sqle.toString());
 						JOptionPane.showMessageDialog(buttonInput,"DB 접속실패 : "+sqle.toString());
 					} catch(Exception e) {
 						System.out.println("Unknown error");
@@ -121,16 +92,8 @@ public class EventGui extends JFrame implements ActionListener{
 					}
 					return;
 
-				}
-				
-			}
+				}	
 			
-		};
-		
-		buttonInput.addActionListener(listener);
-	}*/
-
-	/*@Override
-	public void actionPerformed(ActionEvent evt) {
-	}*/
-}
+		}
+	  }
+	}
