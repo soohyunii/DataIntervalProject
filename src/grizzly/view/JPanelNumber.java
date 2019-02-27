@@ -9,6 +9,7 @@ public class JPanelNumber extends JFrame{
 	public JPanel01 jpanel01 = null;
 	public JPanel02 jpanel02 = null;
 	public JPanel03 jpanel03 = null;
+	public JPanel04 jpanel04 = null;
 	
 	public void change(String panelName) {
 		if(panelName.equals("jpanel01")) {
@@ -26,6 +27,11 @@ public class JPanelNumber extends JFrame{
 			getContentPane().add(jpanel03);
 			revalidate();
 			repaint();
+		} else if(panelName.equals("jpanel04")) {
+			getContentPane().removeAll();
+			getContentPane().add(jpanel04);
+			revalidate();
+			repaint();
 		}
 	}
 
@@ -39,6 +45,7 @@ public class JPanelNumber extends JFrame{
 		win.jpanel01 = new JPanel01(win);
 		win.jpanel02 = new JPanel02(win);
 		win.jpanel03 = new JPanel03(win);
+		win.jpanel04 = new JPanel04(win);
 		
 		win.add(win.jpanel01);
 		

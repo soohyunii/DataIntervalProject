@@ -15,7 +15,7 @@ public class JPanel01 extends JPanel{
 	private JButton jBAddRow=null;
 	private DBConnection dbConn;
 	private JTextField DBtextField, PWtextField, HostTextField, PortTextField, SidTextField;
-	String userName,password,host,port,sid;
+	public String userName,password,host,port,sid;
 	private JPanelNumber win;
 	
 	DBConnection dbc = new DBConnection(); 
